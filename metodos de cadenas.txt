@@ -1,0 +1,14 @@
+.length()                     //devuelve la longitud de la cadena
+.equals()                     //compara un objeto con otro
+.equalsIgnoreCase()           //compara un objeto con otro sin importar como este escrito
+.indexOf()                    //devuelve un int indicando la posicion donde se encuentra lo buscado
+.lastIndexOf()                //devuelve un int indicando la ultima posicion donde se encuentra lo buscado
+.startWith()                  //devuelve un boolean indicando si lo buscado empieza por la cadena leida
+.endsWith()                   //devuelve un boolean indicando si lo buscado termina por la cadena leida
+.subString(4)                 //duelve el resto de la cadena empezando a contar desde el numero indicado
+.subString(0,4)               //duelve el String desde la posicion 0 hasta el 4 de una cadena
+.toLowerCase()                //devuelve una cadena convertida a miniscula
+.toUpperCase()                //devuelve una cadena convertida a MAYUSCULA
+.trim()                       //quita los espacios del inicio y el final de una cadena
+.replace(1,2)                 //es un String que reemplaza el valor 1 por el valor 2
+String.valueOf()
