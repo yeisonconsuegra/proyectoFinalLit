@@ -97,7 +97,7 @@ export class CodigoApi extends LitElement {
     }
 
     _dataFormat2 = (data) => {
-       
+       //console.log(data)
         this.character.push({
           name: data.name,
           img: data.sprites.other.dream_world.front_default,
