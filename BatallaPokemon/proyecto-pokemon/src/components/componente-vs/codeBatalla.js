@@ -126,9 +126,10 @@ export function saveToLCS(data) {
     let cpok = document.querySelector("proyecto-pokemon").renderRoot.querySelector("div").querySelector("div").querySelector("codigo-api");
     setTimeout(() => {
       cpok.setAttribute("offset", 4);
-    }, "40");
+    }, "50");
 
+    
     setTimeout(() => {
       cpok.setAttribute("offset", 0);
-    }, "40");
+    }, "50");
   }
