@@ -4,6 +4,8 @@ import "./components/componente-api/codigo-api";
 import "./components/componente-vs/pokemones-vs";
 import "./components/componente-ganador/pokemones-ganador";
 import * as funciones from "./archivo-pokemon";
+import * as dataquita from "./components/componente-vs/codeBatalla";
+
 
 export class ProyectoPokemon extends LitElement {
   static get properties() {
@@ -190,18 +192,22 @@ export class ProyectoPokemon extends LitElement {
     this.pokes = [];
     this.offset = 0; 
 
+    //obtenemos el dato de codigo-api.js
     this.addEventListener('ApiData', (e)=>{
-      this.pokemones = (e.detail.data);
-      //console.log(e.detail.data);
+      this.pokemones = dataquita._formatData(e.detail);
     });
 
+
+    //obtenemos el dato de archivo pokemones.js y se lo enviamos al hijo pokemones-vs.js
     this.addEventListener('eventName', (e) => {
       let bla = this.shadowRoot.querySelector('pokemones-vs');
+      //se lo agregamos al parametro que fue inicializado en el componente pokemones-vs.js
       bla.setAttribute('pokemon', e.detail);
     });
 
+
+    //obtenemos el dato de archivo pokemones-vs.js para desabilitar los checkbox
     this.addEventListener('disable', (e) => {
-      //console.log(e.detail);
       if(e.detail === true){
         this.disable();
       }else{
@@ -209,16 +215,23 @@ export class ProyectoPokemon extends LitElement {
       }      
     });
 
+
+    ////obtenemos el dato de archivo codeBatalla.js que nos dice el ganador y se lo pasamos al archivo hijo pokemones-ganador.js
     this.addEventListener('ganador', (e) => {
       let bla = this.shadowRoot.querySelector('pokemones-ganador');
+      //se lo agregamos al parametro que fue inicializado en el componente pokemones-ganador.js
       bla.setAttribute('ganador', e.detail);
     });
 
+
+
+    //obtenemos el dato de archivo pokemones-ganador.js para resetear los datos
     this.addEventListener('reseteo', (e) => {
       let pokeVs = this.shadowRoot.querySelector("pokemones-vs");
       pokeVs.setAttribute("pokemon", "[]")
       let pokeGanador = this.shadowRoot.querySelector("pokemones-ganador");
       pokeGanador.setAttribute("ganador", "")
+      dataquita.actualizarBatalla();
     });
   }
 
@@ -295,14 +308,14 @@ export class ProyectoPokemon extends LitElement {
     return html`
       ${this.pokemones.map(character => html`
         <div class="card">
-        <input type="checkbox" @change="${funciones.inputData}" value='{"nombre" : "${character.name}", "img" : "${character.img}", "ataque" : ${character.ataque}, "vida" : ${character.vida}}'>
+        <input type="checkbox" @change="${funciones.inputData}" .value='{"nombre" : "${character.name}", "img" : "${character.img}", "ataque" : ${character.ataque}, "vida" : ${character.vida}}'>
         <div class="img-poke"><img src="${character.img}"></div>
           <div class="card-contend">
             <div class="nombre-cont">
                 <label class="letra">Nombre: ${character.name}</label>
                 <p class="letra">Vida : ${character.vida}</p>
                 <p class="letra">Ataque : ${character.ataque}</p>
-                <p class="letra">Partidas ganadas :</p>
+                <p class="letra">Partidas ganadas : ${character.wons}</p>
             </div>
           </div>
         </div>

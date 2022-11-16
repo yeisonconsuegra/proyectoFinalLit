@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import * as da from "../componente-vs/codeBatalla";
 
 export class PokemonesGanador extends LitElement {
     static styles = [
@@ -97,6 +98,8 @@ export class PokemonesGanador extends LitElement {
             `;
         }else{
             this.ganador = JSON.parse(this.ganador);
+            console.log(this.ganador)
+            da.saveToLCS(this.ganador);
             return html`
             <div class="container-pack">
                 <div><img src="${this.ganador.img}"></div>
@@ -106,7 +109,7 @@ export class PokemonesGanador extends LitElement {
         }
     }
 
-
+    // envia este evento al padre para que el padre resetee los datos de los componentes
     _resetiar(){
     this.dispatchEvent(new CustomEvent('reseteo', { detail: true, bubbles: true, composed: true}));
     }
