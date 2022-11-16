@@ -227,11 +227,11 @@ export class ProyectoPokemon extends LitElement {
 
     //obtenemos el dato de archivo pokemones-ganador.js para resetear los datos
     this.addEventListener('reseteo', (e) => {
-      let pokeVs = this.shadowRoot.querySelector("pokemones-vs");
-      pokeVs.setAttribute("pokemon", "[]")
       let pokeGanador = this.shadowRoot.querySelector("pokemones-ganador");
       pokeGanador.setAttribute("ganador", "")
       dataquita.actualizarBatalla();
+    let pokeVs = this.shadowRoot.querySelector("pokemones-vs");
+      pokeVs.setAttribute("pokemon", "[]")
     });
   }
 

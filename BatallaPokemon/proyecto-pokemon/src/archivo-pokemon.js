@@ -4,8 +4,9 @@ var arrayPokemon = [];
 //este metodo evalua si se marco el checkbox o se desmarco, agregando los pokemones a un array
 
 export function inputData(e){
-    //si hubo cambio en el checkBox
+    //si el checked es true o fue seleccionado
     if(e.target.checked){
+        console.log(e.target.checked)
         //agrega el value del input en el array
         arrayPokemon.push(e.target.value);
         sendPokes();
